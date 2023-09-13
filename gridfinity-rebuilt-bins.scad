@@ -29,9 +29,9 @@ $fs = 0.25;
 
 /* [General Settings] */
 // number of bases along x-axis
-gridx = 5;  
+gridx = 3;  
 // number of bases along y-axis   
-gridy = 5;  
+gridy = 1;  
 // bin height. See bin height information and "gridz_define" below.  
 gridz = 6;
 
@@ -60,7 +60,7 @@ scoop = 1; //[0:0.1:1]
 only_corners = false;
 
 /* [Base] */
-style_hole = 3; // [0:no holes, 1:magnet holes only, 2: magnet and screw holes - no printable slit, 3: magnet and screw holes - printable slit]
+style_hole = 1; // [0:no holes, 1:magnet holes only, 2: magnet and screw holes - no printable slit, 3: magnet and screw holes - printable slit]
 // number of divisions per 1 unit of base along the X axis. (default 1, only use integers. 0 means automatically guess the right division)
 div_base_x = 0;
 // number of divisions per 1 unit of base along the Y axis. (default 1, only use integers. 0 means automatically guess the right division)
@@ -79,6 +79,137 @@ gridfinityInit(gridx, gridy, height(gridz, gridz_define, style_lip, enable_zsnap
 gridfinityBase(gridx, gridy, l_grid, div_base_x, div_base_y, style_hole, only_corners=only_corners);
 
 }
+
+
+
+
+// ===== MY_STUFF ===== //
+// resistor storage
+/*
+gridfinityInit(2, 3, height(3), 0, 42) {
+    cut(0, 1, 2/3, 2, 0, 0);
+    cut(2/3, 1, 2/3, 2, 0, 0);
+    cut(4/3, 1, 2/3, 2, 0, 0);
+    
+    cut(0, 0, 2/3, 1, 5, 1);
+    cut(2/3, 0, 2/3, 1, 5, 1);
+    cut(4/3, 0, 2/3, 1, 5, 1);
+}
+gridfinityBase(2, 3, 42, 1, 1, 1);
+*/
+// hammer
+/*
+gridfinityInit(1, 3, height(3), 0, 42) {
+    cut_move(0, 0, 1, 3) {
+        translate([-9.85,-43,-14.2]) {
+            polyhedron(points = [[0,0,0],[19.7,0,0],[19.7,0,12.54],[0,0,12.54],
+                [0,53,0],[19.7,53,0],
+                [0,97.2,8.4],[19.7,97.2,8.4],
+                [0,97.2,12.54],[19.7,97.2,12.54],
+                [-2,-2,14.54],[21.7,-2,14.54],[21.7,100,14.54],[-2,100,14.54]],
+                faces = [[0,3,2,1],[4,6,8,3,0],[1,2,9,7,5],[0,1,5,4],[4,5,7,6],
+                [9,8,6,7],//[2,3,8,9],
+                [13,12,11,10],
+                [10,11,2,3],[11,12,9,2],[12,13,8,9],[13,10,3,8]]);
+        }
+        cylinder(h=100,r=7, center=true);
+        
+    }
+}
+gridfinityBase(1, 3, 42, 1, 1, 1);
+*/
+// skrewdrivers
+/*
+difference () {
+    gridfinityInit(3, 1, height(9), 0, 42) {
+        cut_move(0, 0, 3/5, 0.5) {
+            cylinder(r=3.5, h=200, center=true);
+        }
+        cut_move(3/5, 0, 3/5, 0.5) {
+            cylinder(r=3.5, h=200, center=true);
+        }
+        cut_move(6/5, 0, 3/5, 0.5) {
+            cylinder(r=3, h=200, center=true);
+        }
+        cut_move(9/5, 0, 3/5, 0.5) {
+            cylinder(r=2.5, h=200, center=true);
+        }
+        cut_move(12/5, 0, 3/5, 0.5) {
+            cylinder(r=2, h=200, center=true);
+        }
+        
+        cut_move(3/10, 0.5, 3/5, 0.5) {
+            cylinder(r=4, h=200, center=true);
+        }
+        cut_move(3/10 + 3/5, 0.5, 3/5, 0.5) {
+            cylinder(r=4, h=200, center=true);
+        }
+        cut_move(3/10 + 6/5, 0.5, 3/5, 0.5) {
+            cylinder(r=4.5, h=200, center=true);
+        }
+        cut_move(3/10 + 9/5, 0.5, 3/5, 0.5) {
+            cylinder(r=5.5, h=200, center=true);
+        }
+    }
+    translate ([0, 0, 22]) {
+        cube([3*42-10, 42 * 2, 28], center=true);
+    }
+    //cube([3*42-10, 38, 30], center=true);
+}
+gridfinityBase(3, 1, 42, 1, 1, 1);
+*/
+// meter
+/*
+difference() {
+    gridfinityInit(1, 1, height(6), 0, 42) {
+        cut_move(0, 0, 1, 0.5) {
+            cube([13.5, 1, 100], center=true);
+            polyhedron([
+                [-15.5/2, 1.5, 0],
+                [15.5/2, 1.5, 0],
+                [15.5/2, -1.5, 0],
+                [-15.5/2, -1.5, 0],
+            
+                [-13.5/2, 1/2, -1],
+                [13.5/2, 1/2, -1],
+                [13.5/2, -1/2, -1],
+                [-13.5/2, -1/2, -1],
+            ],[
+                [0,1,2,3],
+                [7,6,5,4],
+                [0,4,5,1],
+                [1,5,6,2],
+                [2,6,7,3],
+                [3,7,4,0]
+            ]);
+            
+        }
+    }
+    translate([0, 42*0.1+42*0.4-21, 0]) {
+        cube([37, 12, 100], center=true);
+        translate([0,0,44.8]) {
+            polyhedron([
+                [-37/2, 10, 0],
+                [37/2, 10, 0],
+                [37/2, -10, 0],
+                [-37/2, -10, 0],
+        
+                [-37/2, 0, -10],
+                [37/2, 0, -10],
+            ],[
+                [0,1,2,3],
+                [0,4,5,1],
+                [1,5,2],
+                [2,5,4,3],
+                [3,4,0]
+            ]);
+        }
+            
+    }
+        
+}
+gridfinityBase(1,1,42,1,1,1);
+*/
 
 
 // ===== EXAMPLES ===== //

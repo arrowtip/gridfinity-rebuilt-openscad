@@ -21,7 +21,7 @@ l_grid = 42;
 // screw hole radius
 r_hole1 = 1.5;  
 // magnet hole radius
-r_hole2 = 3.25; 
+r_hole2 = 3.2; 
 // center-to-center distance between holes
 d_hole = 26;  
 // distance of hole from side of bin
@@ -29,7 +29,7 @@ d_hole_from_side=8;
 // magnet hole depth
 h_hole = 2.4;   
 // slit depth (printer layer height)
-h_slit = 0.2; 
+h_slit = 0.4; 
 
 // top edge fillet radius
 r_f1 = 0.6;     
@@ -37,9 +37,9 @@ r_f1 = 0.6;
 r_f2 = 2.8;     
 
 // width of divider between compartments
-d_div = 1.2;    
+d_div = 1.6;    
 // minimum wall thickness
-d_wall = 0.95;  
+d_wall = 1.6;  
 // tolerance fit factor 
 d_clear = 0.25; 
 

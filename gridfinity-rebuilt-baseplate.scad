@@ -25,7 +25,7 @@ gridy = 5;
 // screw diameter
 d_screw = 3.35;
 // screw head diameter
-d_screw_head = 5;
+d_screw_head = 6;
 // screw spacing distance
 screw_spacing = .5;
 // number of screws per grid block
@@ -47,7 +47,7 @@ fity = 0; // [-1:0.1:1]
 /* [Styles] */
 
 // baseplate styles
-style_plate = 0; // [0: thin, 1:weighted, 2:skeletonized, 3: screw together, 4: screw together minimal]
+style_plate = 3; // [0: thin, 1:weighted, 2:skeletonized, 3: screw together, 4: screw together minimal]
 
 // enable magnet hole
 enable_magnet = true; 
